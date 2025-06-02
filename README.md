@@ -22,6 +22,8 @@ pip install -r requirements.txt
    * Input the pairing code "1234"
    * HC-06 will show connected once, but disconnected quickly afterward, just make sure it shows paired, will be fine for using it as serial device /dev/rfcomm*
 
+   For more information about the Witmotion device, visit: [Witmotion WT901BLECL 9-axis BLE Accelerometer](https://www.wit-motion.com/BLE/52.html)
+
 ## Project Structure
 
 - `src/`: Source code directory
