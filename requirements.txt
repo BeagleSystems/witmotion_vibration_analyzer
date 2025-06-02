@@ -1,4 +1,5 @@
-numpy>=1.24.0
-scipy>=1.10.0
-matplotlib>=3.7.0
-pyserial>=3.5 
+matplotlib==3.10.3
+numpy==2.2.6
+pyserial==3.5
+pywitmotion @ git+https://github.com/askuric/pywitmotion.git@6c9905118818b3a4c6618d405cf8d7b0d1ebb09b
+scipy==1.15.3

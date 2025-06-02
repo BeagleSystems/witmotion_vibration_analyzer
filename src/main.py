@@ -4,15 +4,17 @@ from witmotion_device import WitmotionDevice
 
 def main():
     # Device configuration
-    DEVICE_ADDRESS = "00:0C:BF:07:6D:4A"  # Replace with your device's address
-    SAMPLING_RATE = 200.0  # Hz
-    COLLECTION_DURATION = 10.0  # seconds
+    # DEVICE_ADDRESS = "00:0C:BF:07:6D:4A"  # Replace with your device's address
+    SERIAL_DEVICE = "/dev/rfcomm0"  # Serial device for HC-06 module
+    # default output rate is 10Hz, witmotion spec shows 0.2Hz to 200Hz
+    SAMPLING_RATE = 10.0  # data output sample rate in Hz
+    COLLECTION_DURATION = 120.0  # data collection duration in seconds
     
     # Initialize the vibration analyzer
     analyzer = VibrationAnalyzer(sampling_rate=SAMPLING_RATE)
     
     # Initialize and connect to the Witmotion device
-    device = WitmotionDevice(DEVICE_ADDRESS)
+    device = WitmotionDevice(serial_device=SERIAL_DEVICE)
     if not device.connect():
         print("Failed to connect to device. Exiting...")
         return
@@ -20,16 +22,9 @@ def main():
     try:
         print(f"Collecting data for {COLLECTION_DURATION} seconds...")
         
-        # Collect acceleration data
-        timestamps, acceleration_data = device.collect_data(
-            duration=COLLECTION_DURATION,
-            data_type='acceleration'
-        )
-        
-        # Collect gyroscope data
-        _, gyroscope_data = device.collect_data(
-            duration=COLLECTION_DURATION,
-            data_type='gyro'
+        # Collect both acceleration and gyroscope data simultaneously
+        timestamps, acceleration_data, gyroscope_data = device.collect_data(
+            duration=COLLECTION_DURATION
         )
         
         if not acceleration_data or not gyroscope_data:

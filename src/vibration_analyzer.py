@@ -7,7 +7,7 @@ from typing import List, Tuple, Dict
 import os
 
 class VibrationAnalyzer:
-    def __init__(self, sampling_rate: float = 100.0):
+    def __init__(self, sampling_rate: float = 10.0):
         """
         Initialize the vibration analyzer.
         
